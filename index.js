@@ -105,6 +105,7 @@ function move(retarray){//実際に動かす。
 }
 
 function mutateCheck(){//開拓したルートが今までのよりも長いか判定
+    newRouteC+=2;
     nowroute.push(pos);
     for(var i=0;i<bestroute.length;i++){
         if(pos == bestroute[i]){var oldto = i;}//到達点が最初から何番目に進んだマスか
@@ -112,8 +113,9 @@ function mutateCheck(){//開拓したルートが今までのよりも長いか�
     for(var i=0;i<board.length;i++){
         if(board[i]==1){newRouteC++;}//候補になっているルートのマス数を取得
     }
+    if(oldto-mutateBoard == 2){console.log('旧差分2、一方'+newRouteC);}
     if(((oldto-mutateBoard)>0) &&((oldto-mutateBoard)<=newRouteC)){//開拓したルートが今までの以上だった
-        console.log('新ルート開拓'+newRouteC);
+       // console.log('新ルート開拓'+newRouteC);
         mutateCopy(oldto);
     }else{
        // console.log('探知終了')
@@ -172,7 +174,7 @@ function mutation(){//突然変異
     ismutate = true;
     setInterval(function(){
     direcboard();
-    },10);
+    },100);
 }
 
 function insertArray(pos,direction){//進んだ向きをマスに記入する
